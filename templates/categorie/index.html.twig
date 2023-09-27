@@ -20,7 +20,7 @@
             <tr>
                 <td>
                     {# Si on clique sur une catégorie on peut voir le détail d'une catégorie #}
-                    <a href="" class="align-middle text-decoration-none">{{ categorie }}</a>
+                    <a href="{{ path('show_categorie', {'id': categorie.id}) }}" class="align-middle text-decoration-none">{{ categorie }}</a>
                 </td>
                 <td>
                     {# Modifier une catégorie #}

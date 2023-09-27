@@ -25,9 +25,13 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/categorie/new', name: 'new_categorie')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/categorie/{id}/edit', name: 'edit_categorie')]
+    public function new_edit(Categorie $categorie = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $categorie = new Categorie();
+
+        if(!$categorie) {
+            $categorie = new Categorie();
+        }
 
         $form = $this->createForm(CategorieType::class, $categorie);
 
@@ -47,40 +51,11 @@ class CategorieController extends AbstractController
         }
 
         return $this->render('categorie/new.html.twig', [
-            'formAddCategorie' => $form
+            'formAddCategorie' => $form,
+            'edit' => $categorie->getId(),
         ]);
     }
 
-    #[Route('/categorie/{id}/edit', name: 'edit_categorie')]
-    public function edit(Categorie $categorie = null, Request $request, EntityManagerInterface $entityManager): Response
-    {
-
-        if(!$categorie) {
-            $categorie = new Categorie();
-        }
-  
-        $form = $this->createForm(CategorieType::class, $categorie);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // on récupère les données du formulaire
-            $categorie = $form->getData();
-            // prepare PDO
-            $entityManager->persist($categorie);
-            // execute PDO
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_categorie');
-
-        }
-    
-        return $this->render('categorie/edit.html.twig', [
-            'formEditCategorie' => $categorie->getId(),
-        ]);
-
-    }
 
     #[Route('/categorie/{id}/delete', name: 'delete_categorie')]
     public function delete(Categorie $categorie, EntityManagerInterface $entityManager)
@@ -92,6 +67,16 @@ class CategorieController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_categorie'); 
+
+    }
+
+    #[Route('/categorie/{id}', name: 'show_categorie')]
+    public function show(Categorie $categorie): Response 
+    {
+
+        return $this->render('categorie/show.html.twig', [
+            'categorie' => $categorie
+        ]);
 
     }
 

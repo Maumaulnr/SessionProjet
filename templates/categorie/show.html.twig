@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'une catégorie{% endblock %}
+
+{% block body %}
+    <h1>Détail d'une catégorie</h1>
+
+    <h2>{{ categorie }}</h2>
+
+    {% if categorie.cours | length > 0 %}
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Cours</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cours in categorie.cours %}
+                <tr>
+                    <td>
+                        <a href="{{ path('show_cours', {'id': cours.id}) }}">{{ cours }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun cours dans cette catégorie</p>
+    {% endif %}
+
+{% endblock %}

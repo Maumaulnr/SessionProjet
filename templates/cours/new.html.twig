@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un cours{% endblock %}
+
+{% block body %}
+
+    {% if edit %}
+        <h1>Editer un cours</h1>
+    {% else %}
+        <h1>Ajouter un cours</h1>
+    {% endif %}
+
+    {{ form_start(formAddCours) }}
+        {{ form_row(formAddCours.nomModule) }}
+        
+        {{ form_row(formAddCours.valider) }}
+    {{ form_end(formAddCours) }}
+
+{% endblock %}

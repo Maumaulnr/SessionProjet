@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une entreprise{% endblock %}
+{% block title %}Ajouter une catégorie{% endblock %}
 
 {% block body %}
-    {# {% if edit %}
-        <h1>Editer une entreprise</h1>
-    {% else %} #}
+    {% if edit %}
+        <h1>Editer une catégorie</h1>
+    {% else %}
         <h1>Ajouter une catégorie</h1>
-    {# {% endif %} #}
+    {% endif %}
 
 
     {{ form_start(formAddCategorie) }}

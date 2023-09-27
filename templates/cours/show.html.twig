@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'un cours{% endblock %}
+
+{% block body %}
+    <h1>Détail d'un cours</h1>
+
+    <h2>{{ cours }}</h2>
+
+    <p>
+        Catégorie : <a href="{{ path('show_categorie', {'id': cours.categorie.id}) }}">{{ cours.categorie }}</a> <br>
+        Nom du module : {% if cours.nomModule %} {{ cours.nomModule }} {% else %} Cours non renseignée {% endif %}  <br>
+    </p> 
+
+{% endblock %}
