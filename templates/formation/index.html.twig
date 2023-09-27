@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des formations{% endblock %}
+
+{% block body %}
+    <h1>Liste des formations</h1> 
+
+    <a href="{{ path('new_formation') }}" class="btn btn-success w-25">Ajouter une formation</a>
+
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr>
+                <th>Formation</th>
+                <th>Modifier</th>
+                <th>Suppression</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for formation in formations %}
+            <tr>
+                <td>
+                    {# Si on clique sur une formation on peut voir le détail d'une formation #}
+                    <a href="" class="align-middle text-decoration-none">{{ formation }}</a>
+                </td>
+                <td>
+                    {# Modifier une formation #}
+                    <a class="btn btn-warning" href="{{ path('edit_formation', {'id': formation.id}) }}">Edit</a>
+                </td>
+                <td>
+                    {# Supprimer une formation #}
+                    <a class="btn btn-danger" href="{{ path('delete_formation', {'id': formation.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

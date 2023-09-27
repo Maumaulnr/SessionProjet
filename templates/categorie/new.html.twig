@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une entreprise{% endblock %}
+
+{% block body %}
+    {# {% if edit %}
+        <h1>Editer une entreprise</h1>
+    {% else %} #}
+        <h1>Ajouter une catégorie</h1>
+    {# {% endif %} #}
+
+
+    {{ form_start(formAddCategorie) }}
+        {{ form_row(formAddCategorie.nomCategorie) }}
+        
+        {{ form_row(formAddCategorie.valider) }}
+    {{ form_end(formAddCategorie) }}
+
+{% endblock %}

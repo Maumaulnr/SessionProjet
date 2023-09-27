@@ -72,4 +72,10 @@ class Categorie
 
         return $this;
     }
+
+    // __toString
+    public function __toString()
+    {
+        return $this->nomCategorie;
+    }
 }

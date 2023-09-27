@@ -72,4 +72,10 @@ class Formation
 
         return $this;
     }
+
+    // __toString
+    public function __toString()
+    {
+        return $this->nomFormation;
+    }
 }
