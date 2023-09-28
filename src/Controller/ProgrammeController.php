@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Programme;
+use App\Form\ProgrammeType;
 use App\Repository\ProgrammeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class ProgrammeController extends AbstractController
             $programme = new Programme();
         }
         
-        $form = $this->createForm(SessionType::class, $programme);
+        $form = $this->createForm(ProgrammeType::class, $programme);
         
         $form->handleRequest($request);
 

@@ -11,7 +11,6 @@
         <thead class="table-light">
             <tr>
                 <th>Stagiaire</th>
-                <th>Session</th>
                 <th>Modifier</th>
                 <th>Suppression</th>
             </tr>
@@ -23,10 +22,10 @@
                     <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}" class="align-middle text-decoration-none">{{ stagiaire }}</a>  
                 </td>
                 <td>
-                    {# <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id}) }}">Edit</a> #}
+                    <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id}) }}">Edit</a>
                 </td>
                 <td>
-                    {# <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id}) }}">Supprimer</a> #}
+                    <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id}) }}">Supprimer</a>
                 </td>
             </tr>
             {% endfor %}

@@ -22,10 +22,10 @@
                     <a href="{{ path('show_session', {'id': session.id}) }}" class="align-middle text-decoration-none">{{ session }}</a>  
                 </td>
                 <td>
-                    {# <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id}) }}">Edit</a> #}
+                    <a class="btn btn-warning" href="{{ path('edit_session', {'id': session.id}) }}">Edit</a>
                 </td>
                 <td>
-                    {# <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id}) }}">Supprimer</a> #}
+                    <a class="btn btn-danger" href="{{ path('delete_session', {'id': session.id}) }}">Supprimer</a>
                 </td>
             </tr>
             {% endfor %}
