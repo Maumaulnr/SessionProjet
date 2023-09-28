@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SessionController!{% endblock %}
+{% block title %}Liste des sessions{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1 class="text-white">Liste des sessions</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <a href="{{ path('new_session') }}" class="btn btn-success w-25">Ajouter une session</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/SessionProjet/src/Controller/SessionController.php'|file_link(0) }}">src/Controller/SessionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/SessionProjet/templates/session/index.html.twig'|file_link(0) }}">templates/session/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr>
+                <th>Session</th>
+                <th>Modifier</th>
+                <th>Suppression</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+            <tr>
+                <td>
+                    <a href="{{ path('show_session', {'id': session.id}) }}" class="align-middle text-decoration-none">{{ session }}</a>  
+                </td>
+                <td>
+                    {# <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id}) }}">Edit</a> #}
+                </td>
+                <td>
+                    {# <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id}) }}">Supprimer</a> #}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}

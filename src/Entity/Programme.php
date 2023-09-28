@@ -64,4 +64,10 @@ class Programme
 
         return $this;
     }
+
+    // __toString
+    public function __toString()
+    {
+        return $this->cours." ".$this->session;
+    }
 }
