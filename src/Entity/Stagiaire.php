@@ -134,6 +134,7 @@ class Stagiaire
         return $this;
     }
 
+
     /**
      * @return Collection<int, Session>
      */
@@ -157,4 +158,12 @@ class Stagiaire
 
         return $this;
     }
+
+    public function __toString()
+    {
+        
+        return $this->prenom." ".$this->nom;
+
+    }
+
 }

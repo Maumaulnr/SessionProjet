@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'une session{% endblock %}
+
+{% block body %}
+    <h1>Détail d'une session</h1>
+
+    <h2>{{ session }}</h2>
+
+    <p>
+        {% for stagiaire in stagiaires %}
+        Liste des stagiaires : <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom }}</a>
+        {% endfor %}
+    </p>
+
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr>
+                <th>Intitulé Session</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Nb places théoriques</th>
+                <th>Nb places réservées</th>
+                <th>Nb places restantes</th>
+                <th>Détails programme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{ session.nomSession }}
+                </td>
+                <td>
+                    {{ session.dateDebut | date("d/m/Y") }}
+                </td>
+                <td>
+                    {{ session.dateFin | date("d/m/Y") }}
+                </td>
+                <td>
+                    {{ session.placesTheoriques }}
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    <a href=""> {# en cliquant sur l'icone on affiche le programme qui relie les entités Session et Cours#}
+                        <i class="fa-solid fa-rectangle-list"></i>
+                    </a>
+                </td>
+                <td>
+                    {# <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id}) }}">Edit</a> #}
+                </td>
+                <td>
+                    {# <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id}) }}">Supprimer</a> #}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
