@@ -43,6 +43,12 @@ class SessionController extends AbstractController
 
             // on récupère les données du formulaire
             $session = $form->getData();
+
+            // pour chaque stagiaire
+            foreach ($session->getStagiaires() as $stagiaire) {
+                $stagiaire->addSession($session);
+            }
+
             // prepare PDO
             $entityManager->persist($session);
             // execute PDO

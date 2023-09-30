@@ -11,8 +11,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SessionType extends AbstractType
 {
@@ -48,12 +48,15 @@ class SessionType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            // ->add('stagiaires', EntityType::class, [
-            //     'class' => Stagiaire::class,
-            //     'attr' => [
-            //         'class' => 'form-control'
-            //     ]
-            // ])
+            ->add('stagiaires', EntityType::class, [
+                'class' => Stagiaire::class,
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'multiple' => true, // Permet la sélection de plusieurs stagiaires
+                'expanded' => true, // Utilisez des cases à cocher
+                'choice_label' => 'nom', // Le champ à afficher dans les options
+            ])
             ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'

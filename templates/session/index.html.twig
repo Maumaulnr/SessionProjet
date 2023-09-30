@@ -9,22 +9,48 @@
 
     <table class="table table-hover table-responsive">
         <thead class="table-light">
-            <tr>
-                <th>Session</th>
+            <tr class="text-center">
+                <th>Intitulé Session</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Nb places théoriques</th>
+                <th>Nb places réservées</th>
+                <th>Nb places restantes</th>
+                <th>Détails programme</th>
                 <th>Modifier</th>
-                <th>Suppression</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
             {% for session in sessions %}
-            <tr>
-                <td>
+            <tr class="text-center">
+                <td class="align-middle">
                     <a href="{{ path('show_session', {'id': session.id}) }}" class="align-middle text-decoration-none">{{ session }}</a>  
                 </td>
-                <td>
+                <td class="align-middle">
+                    {{ session.dateDebut | date("d/m/Y") }}
+                </td>
+                <td class="align-middle">
+                    {{ session.dateFin | date("d/m/Y") }}
+                </td>
+                <td class="align-middle">
+                    {{ session.placesTheoriques }}
+                </td>
+                <td class="align-middle">
+                    0
+                </td>
+                <td class="align-middle">
+                    0
+                </td>
+                <td class="align-middle">
+                    <a href=""> {# en cliquant sur l'icone on affiche le programme qui relie les entités Session et Cours#}
+                        <i class="fa-solid fa-rectangle-list"></i>
+                    </a>
+                </td>
+                <td class="align-middle">
                     <a class="btn btn-warning" href="{{ path('edit_session', {'id': session.id}) }}">Edit</a>
                 </td>
-                <td>
+                <td class="align-middle">
                     <a class="btn btn-danger" href="{{ path('delete_session', {'id': session.id}) }}">Supprimer</a>
                 </td>
             </tr>

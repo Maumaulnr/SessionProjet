@@ -148,9 +148,15 @@ class Session
         return $this->stagiaires;
     }
 
+    /**
+     * cette méthode permet d'ajouter un stagiaire à la liste des stagiaires d'une session tout en maintenant la cohérence des relations entre les entités. 
+     * Elle s'assure que le stagiaire n'est pas ajouté deux fois et que la session est également associée au stagiaire.
+     */
     public function addStagiaire(Stagiaire $stagiaire): static
     {
+        // Si le stagiaire n'est pas déjà présent dans la collection 
         if (!$this->stagiaires->contains($stagiaire)) {
+            // alors on l'ajoute à la collection
             $this->stagiaires->add($stagiaire);
             $stagiaire->addSession($this);
         }
