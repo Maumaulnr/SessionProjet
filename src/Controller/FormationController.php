@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Formation;
+use App\Form\SessionType;
 use App\Form\FormationType;
 use App\Repository\FormationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,8 +42,8 @@ class FormationController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             // on récupère les données du formulaire
             $formation = $form->getData();
             // prepare PDO
@@ -58,6 +61,34 @@ class FormationController extends AbstractController
         ]);
 
     }
+
+    // public function addSession(ManagerRegistry $doctrine, Formation $formation, Session $session = null, Request $request)
+    // {
+        
+    //     $session = new Session();
+
+    //     $form = $this->createForm(SessionType::class, $session);
+
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid())
+    //     {
+    //         $formation->addSession($session);
+    //         $entityManager = $doctrine->getManager(); // accès à la BDD, équivaut à new PDO
+    //         $entityManager->persist($session);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('app_formation');
+    //     }
+
+    //     // vue pour afficher le formulaire d'ajout
+    //     return $this->render('session/add.html.twig', [
+    //         'form' => $form,
+    //         'formation' => $formation,
+    //         'sessionId' => $session->getId(),
+    //     ]);
+
+    // }
 
     #[Route('/formation/{id}/delete', name: 'delete_formation')]
     public function delete(Formation $formation, EntityManagerInterface $entityManager)

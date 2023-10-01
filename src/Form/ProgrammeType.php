@@ -8,6 +8,7 @@ use App\Entity\Programme;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -18,17 +19,23 @@ class ProgrammeType extends AbstractType
     {
         $builder
             ->add('nbJours', IntegerType::class, [
+                'label' => 'Durée en jours',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'min' => 1,
+                    'max' => 100,
                 ]
             ])
             ->add('cours', EntityType::class, [
+                'label' => 'Cours',
                 'class' => Cours::class,
+                'choice_label' => 'nomModule',
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
-            ->add('session', EntityType::class, [
+            // sera lié à la session que l'on édite donc on le cache
+            ->add('session', HiddenType::class, [
                 'class' => Session::class,
                 'attr' => [
                     'class' => 'form-control'
