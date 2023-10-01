@@ -38,7 +38,18 @@
         </nav>
         <main class="container d-flex flex-column justify-content-center align-items-center">
             <div class="container px-4 px-lg-5 h-100 d-flex flex-column gap-3">
+
+                {# si la personne est connectée on affiche "se déconnecter" sinon on affiche "se connecter" #}
+                {% if app.user %}
+                    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                    <a href="">Mon profil</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}">Se connecter</a>
+                    <a href="{{ path('app_register') }}">S'enregistrer</a>
+                {% endif %}
+
                 {% block body %}{% endblock %}
+
             </div>
         </main>
 

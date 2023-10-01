@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    {# app.formateur pour récupérer les infos de la personne connectée #}
+    <h1>Bienvenue {{ app.user.nom }} </h1>
+
+{% endblock %}
