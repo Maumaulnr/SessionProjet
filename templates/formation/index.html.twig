@@ -20,7 +20,7 @@
             <tr>
                 <td>
                     {# Si on clique sur une formation on peut voir le détail d'une formation #}
-                    <a href="" class="align-middle text-decoration-none">{{ formation }}</a>
+                    <a href="{{ path('show_formation', {'id':formation.id}) }}" class="align-middle text-decoration-none">{{ formation }}</a>
                 </td>
                 <td>
                     {# Modifier une formation #}

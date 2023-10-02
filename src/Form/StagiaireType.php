@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class StagiaireType extends AbstractType
@@ -58,17 +59,18 @@ class StagiaireType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            // ->add('sessions', EntityType::class, [
-            //     'class' => Session::class,
-            //     'attr' => [
-            //         'class' => 'form-control'
-            //     ]
-            // ])
-            ->add('valider', SubmitType::class, [
+            // sera lié à la session que l'on édite donc on le cache
+            ->add('session', HiddenType::class, [
+                'mapped' => false,
                 'attr' => [
-                    'class' => 'btn btn-success'
+                    'class' => 'form-control'
                 ]
-            ]);
+            ])
+            // ->add('valider', SubmitType::class, [
+            //     'attr' => [
+            //         'class' => 'btn btn-success'
+            //     ]
+            // ]);
         ;
     }
 

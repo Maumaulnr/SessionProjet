@@ -8,8 +8,8 @@ use App\Entity\Programme;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
@@ -36,16 +36,16 @@ class ProgrammeType extends AbstractType
             ])
             // sera lié à la session que l'on édite donc on le cache
             ->add('session', HiddenType::class, [
-                'class' => Session::class,
+                'mapped' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
-            ->add('valider', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-success'
-                ]
-            ]);
+            // ->add('valider', SubmitType::class, [
+            //     'attr' => [
+            //         'class' => 'btn btn-success'
+            //     ]
+            // ]);
         ;
     }
 

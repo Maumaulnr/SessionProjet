@@ -61,34 +61,7 @@ class FormationController extends AbstractController
         ]);
 
     }
-
-    // public function addSession(ManagerRegistry $doctrine, Formation $formation, Session $session = null, Request $request)
-    // {
-        
-    //     $session = new Session();
-
-    //     $form = $this->createForm(SessionType::class, $session);
-
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid())
-    //     {
-    //         $formation->addSession($session);
-    //         $entityManager = $doctrine->getManager(); // accès à la BDD, équivaut à new PDO
-    //         $entityManager->persist($session);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('app_formation');
-    //     }
-
-    //     // vue pour afficher le formulaire d'ajout
-    //     return $this->render('session/add.html.twig', [
-    //         'form' => $form,
-    //         'formation' => $formation,
-    //         'sessionId' => $session->getId(),
-    //     ]);
-
-    // }
+    
 
     #[Route('/formation/{id}/delete', name: 'delete_formation')]
     public function delete(Formation $formation, EntityManagerInterface $entityManager)
@@ -100,6 +73,16 @@ class FormationController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_formation'); 
+
+    }
+
+    #[Route('/formation/{id}', name: 'show_formation')]
+    public function show(Formation $formation): Response 
+    {
+
+        return $this->render('formation/show.html.twig', [
+            'formation' => $formation,
+        ]);
 
     }
 

@@ -30,7 +30,8 @@ class Session
     private ?int $placesTheoriques = null;
 
 
-    #[ORM\OneToMany(mappedBy: 'sessions', targetEntity: Programme::class)]
+    #[ORM\OneToMany(mappedBy: 'sessions', targetEntity: Programme::class, orphanRemoval:true)]
+    // #[ORM\Orderby('module' = 'ASC')]
     private Collection $programmes;
 
     #[ORM\ManyToOne(inversedBy: 'sessions')]

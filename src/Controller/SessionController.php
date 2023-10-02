@@ -45,9 +45,9 @@ class SessionController extends AbstractController
             $session = $form->getData();
 
             // pour chaque stagiaire
-            foreach ($session->getStagiaires() as $stagiaire) {
-                $stagiaire->addSession($session);
-            }
+            // foreach ($session->getStagiaires() as $stagiaire) {
+            //     $stagiaire->addSession($session);
+            // }
 
             // prepare PDO
             $entityManager->persist($session);
@@ -59,8 +59,9 @@ class SessionController extends AbstractController
         }
 
         return $this->render('session/new.html.twig', [
-            'formAddSession' => $form,
-            'edit' => $session->getId()
+            'form' => $form,
+            'edit' => $session->getId(),
+            'sessionId' => $session->getId(),
         ]);
 
     }
