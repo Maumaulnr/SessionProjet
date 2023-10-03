@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Liste des programmes{% endblock %}
 
@@ -32,7 +32,7 @@
                         <td>{{ programme.cours.nomModule }}</td>
                         <td>{{ programme.nbJours }}</td>
                         <td>
-                            {# <a class="btn btn-warning" href="{{ path('edit_programme', {'id': programme.id}) }}">Edit</a> #}
+                            <a class="btn btn-warning" href="{{ path('edit_programme', {'id': programme.id}) }}">Edit</a>
                         </td>
                         <td>
                             <a class="btn btn-danger" href="{{ path('delete_programme', {'id': programme.id}) }}">Supprimer</a>
@@ -45,4 +45,4 @@
     {% endfor %}
 
 
-{% endblock %}
+{% endblock %} #}

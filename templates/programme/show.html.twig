@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'un programme{% endblock %}
+
+{% block body %}
+    <h1>Détail d'un programme</h1>
+
+    <h3>Liste des cours :</h3>
+
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr class="text-center">
+                <th>Catégories</th>
+                <th>Module</th>
+                <th>NbJours</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>{{ programme.cours.categorie }}</td>
+                <td>{{ programme.cours }}</td>
+                <td>{{ programme.nbJours }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

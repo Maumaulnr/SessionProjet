@@ -11,6 +11,7 @@
         <thead class="table-light">
             <tr>
                 <th>Stagiaire</th>
+                <th>Inscription à une session</th>
                 <th>Modifier</th>
                 <th>Suppression</th>
             </tr>
@@ -22,6 +23,15 @@
                     <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}" class="align-middle text-decoration-none">{{ stagiaire }}</a>  
                 </td>
                 <td>
+                    {% if stagiaire.sessions is not empty %}
+                        {% for session in stagiaire.sessions %}
+                            <p><a href="{{ path('show_session', {'id': session.id}) }}">{{ session }}</a></p>
+                        {% endfor %}
+                    {% else %}
+                        <p>Aucune session</p>
+                    {% endif %}
+                </td>
+                <td>
                     <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id}) }}">Edit</a>
                 </td>
                 <td>
@@ -31,5 +41,5 @@
             {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}
+

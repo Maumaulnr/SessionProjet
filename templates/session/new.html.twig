@@ -4,11 +4,11 @@
 
 {% block body %}
 
-    {% if edit %}
-        <h1>Editer une session</h1>
-    {% else %}
+    {# {% if edit %} #}
+        {# <h1>Editer une session</h1> #}
+    {# {% else %} #}
         <h1>Ajouter une session</h1>
-    {% endif %}
+    {# {% endif %} #}
 
     {{ form_start(form) }}
         {{ form_row(form.nomSession) }}
@@ -24,39 +24,38 @@
         </div>
         {{ form_row(form.placesTheoriques) }}
 
-        {# On va construire dynamiquement la liste des modules existants à partir de Programme #}
-        <h2>Programme de la session</h2>
-
         <div class="form-group row ">
-            <div class="col-form-label col-sm-2">&nbsp;</div>
             <div id="programme-fields-list" class="col-sm-10 remove-collection-widget"
-                data-prototype="{{ form_widget(form.programmes.vars.prototype)|e }}"
-                data-session="{{sessionId}}"
-                data-widget-tags="{{ '<p></p>'|e }}"
+                data-prototype="{{ form_widget(form.programmes.vars.prototype, {'attr': {'class': 'borders'}})|e }}"
+                data-session="{{ sessionId }}"
+                data-widget-tags="{{ '<div class="mt-3"></div>'|e }}"
                 data-widget-counter="{{ form.programmes|length }}">
             {% for programmeField in form.programmes %}
-                <p>
-                    {{ form_errors(programmeField) }}
-                    {{ form_widget(programmeField, {'attr': {'class': 'borders'}}) }}
-                </p>
-            {% endfor %}
+            <div>
+                {{ form_errors(programmeField) }}
+                {{ form_widget(programmeField, {'attr': {'class': 'borders'}}) }}
             </div>
-        </div>
-        <div class="form-group row flex-action">
-            <button type="button" 
-                class="add-another-collection-widget button"
-                data-list-selector="#programme-fields-list">Ajouter un nouveau module</button>
+                {% endfor %}
+            </div>
+            </div>
+            <div class="form-group row flex-action">
+            <button type="button"
+                class="add-another-collection-widget button bg-slate-900 font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 w-full mt-5"
+                data-list-selector="#programme-fields-list">
+                Ajouter un nouveau module
+            </button>
         </div>
 
         {# empêche l'apparition d'une légende "programmes", si la collection est vide (en cas de création d'une nouvelle session) #}
         {% do form.programmes.setRendered %}
-        {#  #}
+
+
 
         {# On va construire dynamiquement la liste des stagiaires existants à partir de Stagiaire #}
-        <h3>Sélectionnez les stagiaires :</h3>
+        {# <h3>Sélectionnez les stagiaires :</h3> #}
         {# {{ form_row(form.stagiaires) }} #}
 
-        <div class="form-group row ">
+        {# <div class="form-group row ">
             <div class="col-form-label col-sm-2">&nbsp;</div>
             <div id="stagiaire-fields-list" class="col-sm-10 remove-collection-widget"
                 data-prototype="{{ form_widget(form.stagiaires.vars.prototype)|e }}"
@@ -75,10 +74,10 @@
             <button type="button" 
                 class="add-another-collection-widget button"
                 data-list-selector="#stagiaire-fields-list">Ajouter un nouveau stagiaire</button>
-        </div>
+        </div> #}
 
         {# empêche l'apparition d'une légende "programmes", si la collection est vide (en cas de création d'une nouvelle session) #}
-        {% do form.stagiaires.setRendered %}
+        {# {% do form.stagiaires.setRendered %} #}
         {#  #}
 
         {{ form_row(form.valider) }}

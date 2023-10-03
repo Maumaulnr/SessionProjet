@@ -1,5 +1,3 @@
-// gsf = gestion session formation
-
 // Scripts jQuery / JavaScript généraux
 $(document).ready(function() { // Une fois que le document (base.html.twig) HTML/CSS a bien été complètement chargé...
     // add-collection-widget.js : fonction permettant d'ajouter un nouveau bloc "programme" au sein d'une session (pour agrandir la collection)
@@ -16,7 +14,7 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         // courant (équivalent à l'index du prochain champ, en cours d'ajout).
         // Au final, l'attribut ressemblera à "session[programmes][n°]"
         newWidget = newWidget.replace(/__name__/g, counter)
-        // Ajout également des attributs personnalisés "class" et "value", qui n'apparaissent pas dans le prototype original 
+        // Ajout également des attributs personnalisés "class" et "value", qui n'apparaissent pas dans le prototype original
         newWidget = newWidget.replace(/><input type="hidden"/, ' class="borders"><input type="hidden" value="'+session+'"')
         // Incrément du compteur d'éléments et mise à jour de l'attribut correspondant
         counter++
@@ -34,7 +32,9 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
     function addDeleteLink($moduleForm) {
         var $removeFormButton = $('<div class="block"><button type="button" class="button">Supprimer ce module</button></div>');
         $moduleForm.append($removeFormButton)
-    
+
+ 
+
         $removeFormButton.on('click', function(e) {
             $moduleForm.remove()
         })
@@ -62,12 +62,12 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
     })
     // Fonction permettant l'affichage de la fenêtre modale de confirmation pour chaque situation
     function showModalConfirm($id, $href, $title) {
-        console.log("id   = "+$id)
-        console.log("href = "+$href)
+        // console.log("id   = "+$id)
+        // console.log("href = "+$href)
         $('#modalPopup .modal-title').html($title)
         $('#modalPopup .modal-body').html("<span class='center'><i class='fas fa-spinner fa-spin fa-4x'></i></span>")
         $.get(
-            "confirm", // La route doit toujours être accessible au moyen du chemin "confirm" dans le contrôleur associé à l'entité concernée 
+            "confirm", // La route doit toujours être accessible au moyen du chemin "confirm" dans le contrôleur associé à l'entité concernée
             {
                 'id' : $id
             },
@@ -80,5 +80,5 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         })
         $('#modalPopup').modal('show')
     }
-    
+
 })

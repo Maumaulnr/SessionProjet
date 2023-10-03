@@ -19,4 +19,23 @@
         {% endfor %}
     </ul>
 
+    <h3>Liste des cours :</h3>
+
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr class="text-center">
+                <th>Module</th>
+                <th>NbJours</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for programme in programmes %}
+                <tr class="text-center">
+                    <td>{{ programme.cours }}</td>
+                    <td>{{ programme.nbJours }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}

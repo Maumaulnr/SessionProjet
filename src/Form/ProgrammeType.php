@@ -35,12 +35,18 @@ class ProgrammeType extends AbstractType
                 ]
             ])
             // sera lié à la session que l'on édite donc on le cache
-            ->add('session', HiddenType::class, [
-                'mapped' => false,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
+            // ->add('session', HiddenType::class, [
+            //     'mapped' => false,
+            //     'attr' => [
+            //         'class' => 'form-control'
+            //     ]
+            // ])
+            // ->add('session', EntityType::class, [
+            //     'class' => Session::class,
+            //     'attr' => [
+            //         'class' => 'form-control'
+            //     ]
+            // ])
             // ->add('valider', SubmitType::class, [
             //     'attr' => [
             //         'class' => 'btn btn-success'

@@ -25,45 +25,68 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // #[Route('/session/new', name: 'new_session')]
+    // // #[Route('/session/{id}/edit', name: 'edit_session')]
+    // public function new(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
+    // {
+
+    //     $session = new Session();
+        
+        
+    //     $form = $this->createForm(SessionType::class, $session);
+        
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+
+    //         // on récupère les données du formulaire
+    //         $session = $form->getData();
+    //         // $programmes = $form->get('programmes')->getData();
+    //         dd($session->getId());
+
+    //         // prepare PDO
+    //         $entityManager->persist($session);
+    //         // execute PDO
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('app_session');
+
+    //     }
+
+    //     return $this->render('session/new.html.twig', [
+    //         'form' => $form->createView(),
+    //         // 'edit' => $session->getId(),
+    //         'sessionId' => $session->getId(),
+    //     ]);
+
+    // }
+
     #[Route('/session/new', name: 'new_session')]
     #[Route('/session/{id}/edit', name: 'edit_session')]
-    public function new_edit(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
+    public function add(EntityManagerInterface $entityManager, Session $session = null, Request $request): Response
     {
-
-        if(!$session) 
-        {
+        if (!$session) {
             $session = new Session();
         }
+
+        $form = $this->createForm(SessionType::class, $session); // Crée le formulaire
+        $form->handleRequest($request); // Récupère les données du formulaire
+
         
-        $form = $this->createForm(SessionType::class, $session);
-        
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // on récupère les données du formulaire
-            $session = $form->getData();
-
-            // pour chaque stagiaire
-            // foreach ($session->getStagiaires() as $stagiaire) {
-            //     $stagiaire->addSession($session);
-            // }
-
-            // prepare PDO
-            $entityManager->persist($session);
-            // execute PDO
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_session');
-
+        if ($form->isSubmitted() && $form->isValid()) { // Vérifie que le formulaire a été soumis et qu'il est valide
+            $session = $form->getData(); //Hydrate l'objet $session avec les données du formulaire
+            // dd($session);
+            $entityManager->persist($session); // Prépare l'insertion en base de données
+            $entityManager->flush(); // Exécute l'insertion en base de données
+            return $this->redirectToRoute('app_session'); // Redirige vers la liste des sessions
         }
 
+        // vue pour afficher le formulaire d'ajout
         return $this->render('session/new.html.twig', [
-            'form' => $form,
+            'form' => $form->createView(), // Envoie le formulaire à la vue
             'edit' => $session->getId(),
-            'sessionId' => $session->getId(),
+			'sessionId' => $session->getId()
         ]);
-
     }
 
 
@@ -86,10 +109,13 @@ class SessionController extends AbstractController
     {
 
         $stagiaires = $session->getStagiaires();
+        $programmes = $session->getProgrammes();
+        // dd($programmes);
 
         return $this->render('session/show.html.twig', [
             'session' => $session,
-            'stagiaires' => $stagiaires
+            'stagiaires' => $stagiaires,
+            'programmes' => $programmes,
         ]);
 
     }

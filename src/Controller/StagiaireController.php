@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\StagiaireType;
 use App\Repository\StagiaireRepository;
@@ -20,7 +21,7 @@ class StagiaireController extends AbstractController
         $stagiaires = $stagiaireRepository->findBy([], ['nom' => 'ASC']);
 
         return $this->render('stagiaire/index.html.twig', [
-            'stagiaires' => $stagiaires
+            'stagiaires' => $stagiaires,
         ]);
 
     }

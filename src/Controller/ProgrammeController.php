@@ -24,52 +24,52 @@ class ProgrammeController extends AbstractController
         ]);
     }
 
-    #[Route('/programme/new', name: 'new_programme')]
-    #[Route('/programme/{id}/edit', name: 'edit_programme')]
-    public function new_edit(Programme $programme = null, Request $request, EntityManagerInterface $entityManager): Response
-    {
+    // #[Route('/programme/new', name: 'new_programme')]
+    // #[Route('/programme/{id}/edit', name: 'edit_programme')]
+    // public function new_edit(Programme $programme = null, Request $request, EntityManagerInterface $entityManager): Response
+    // {
 
-        if(!$programme) 
-        {
-            $programme = new Programme();
-        }
+    //     if(!$programme) 
+    //     {
+    //         $programme = new Programme();
+    //     }
         
-        $form = $this->createForm(ProgrammeType::class, $programme);
+    //     $form = $this->createForm(ProgrammeType::class, $programme);
         
-        $form->handleRequest($request);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    //     if ($form->isSubmitted() && $form->isValid()) {
 
-            // on récupère les données du formulaire
-            $programme = $form->getData();
-            // prepare PDO
-            $entityManager->persist($programme);
-            // execute PDO
-            $entityManager->flush();
+    //         // on récupère les données du formulaire
+    //         $programme = $form->getData();
+    //         // prepare PDO
+    //         $entityManager->persist($programme);
+    //         // execute PDO
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_programme');
+    //         return $this->redirectToRoute('app_programme');
 
-        }
+    //     }
 
-        return $this->render('programme/new.html.twig', [
-            'formAddProgramme' => $form,
-            'edit' => $programme->getId()
-        ]);
+    //     return $this->render('programme/new.html.twig', [
+    //         'formAddProgramme' => $form,
+    //         'edit' => $programme->getId()
+    //     ]);
 
-    }
+    // }
 
-    #[Route('/programme/{id}/delete', name: 'delete_programme')]
-    public function delete(Programme $programme, EntityManagerInterface $entityManager)
-    {
+    // #[Route('/programme/{id}/delete', name: 'delete_programme')]
+    // public function delete(Programme $programme, EntityManagerInterface $entityManager)
+    // {
         
-        // remove : prépare la requête
-        $entityManager->remove($programme);
-        // Faire la requête SQL DELETE FROM
-        $entityManager->flush();
+    //     // remove : prépare la requête
+    //     $entityManager->remove($programme);
+    //     // Faire la requête SQL DELETE FROM
+    //     $entityManager->flush();
 
-        return $this->redirectToRoute('app_programme'); 
+    //     return $this->redirectToRoute('app_programme'); 
 
-    }
+    // }
 
 
     #[Route('/programme/{id}', name: 'show_programme')]

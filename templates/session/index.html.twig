@@ -23,6 +23,15 @@
         </thead>
         <tbody>
             {% for session in sessions %}
+            {# Calcul du nombre de places réservées pour cette session #}
+            {% set placesReservees = 0 %}
+            {% for stagiaire in session.stagiaires %}
+                {% set placesReservees = placesReservees + 1 %}
+            {% endfor %}
+    
+            {# Calcul du nombre de places restantes #}
+            {% set placesRestantes = session.placesTheoriques - placesReservees %}
+    
             <tr class="text-center">
                 <td class="align-middle">
                     <a href="{{ path('show_session', {'id': session.id}) }}" class="align-middle text-decoration-none">{{ session }}</a>  
@@ -37,18 +46,18 @@
                     {{ session.placesTheoriques }}
                 </td>
                 <td class="align-middle">
-                    0
+                    {{ placesReservees }}
                 </td>
                 <td class="align-middle">
-                    0
+                    {{ placesRestantes }}
                 </td>
                 <td class="align-middle">
-                    <a href=""> {# en cliquant sur l'icone on affiche le programme qui relie les entités Session et Cours#}
+                    <a href="{{ path('show_programme', {'id': session.id}) }}"> {# en cliquant sur l'icone on affiche le programme qui relie les entités Session et Cours#}
                         <i class="fa-solid fa-rectangle-list"></i>
                     </a>
                 </td>
                 <td class="align-middle">
-                    <a class="btn btn-warning" href="{{ path('edit_session', {'id': session.id}) }}">Edit</a>
+                    {# <a class="btn btn-warning" href="{{ path('edit_session', {'id': session.id}) }}">Edit</a> #}
                 </td>
                 <td class="align-middle">
                     <a class="btn btn-danger" href="{{ path('delete_session', {'id': session.id}) }}">Supprimer</a>
@@ -57,5 +66,6 @@
             {% endfor %}
         </tbody>
     </table>
+    
 
 {% endblock %}

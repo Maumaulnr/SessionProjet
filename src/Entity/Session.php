@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Cascade;
 
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
@@ -29,9 +28,11 @@ class Session
     #[ORM\Column]
     private ?int $placesTheoriques = null;
 
+    // #[ORM\Column]
+    // private ?int $nbPlace;
 
-    #[ORM\OneToMany(mappedBy: 'sessions', targetEntity: Programme::class, orphanRemoval:true)]
-    // #[ORM\Orderby('module' = 'ASC')]
+
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class, cascade:["persist"], orphanRemoval:true)]
     private Collection $programmes;
 
     #[ORM\ManyToOne(inversedBy: 'sessions')]
@@ -98,6 +99,33 @@ class Session
 
         return $this;
     }
+
+    // Calculer le nombre de places
+
+    // public function getNbPlace(): ?int
+    // {
+    //     return $this->nbPlace;
+    // }
+
+    // public function setNbPlace(int $nbPlace): self
+    // {
+    //     $this->nbPlace = $nbPlace;
+
+    //     return $this;
+    // }
+
+    // public function getNbPlacesReservees()
+    // {
+    //     $reservees = $this->nbPlace - count($this->stagiaires);
+    // }
+
+    // public function getNbPlacesRestantes()
+    // {
+    //     $reservees = $this->nbPlace - count($this->stagiaires);
+    //     $restantes = $this->nbPlace - $reservees;
+
+    //     return $restantes;
+    // }
 
 
     /**
@@ -181,5 +209,6 @@ class Session
         return $this->nomSession;
 
     }
+
 
 }
