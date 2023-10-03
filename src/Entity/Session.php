@@ -28,10 +28,6 @@ class Session
     #[ORM\Column]
     private ?int $placesTheoriques = null;
 
-    // #[ORM\Column]
-    // private ?int $nbPlace;
-
-
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class, cascade:["persist"], orphanRemoval:true)]
     private Collection $programmes;
 
@@ -99,34 +95,6 @@ class Session
 
         return $this;
     }
-
-    // Calculer le nombre de places
-
-    // public function getNbPlace(): ?int
-    // {
-    //     return $this->nbPlace;
-    // }
-
-    // public function setNbPlace(int $nbPlace): self
-    // {
-    //     $this->nbPlace = $nbPlace;
-
-    //     return $this;
-    // }
-
-    // public function getNbPlacesReservees()
-    // {
-    //     $reservees = $this->nbPlace - count($this->stagiaires);
-    // }
-
-    // public function getNbPlacesRestantes()
-    // {
-    //     $reservees = $this->nbPlace - count($this->stagiaires);
-    //     $restantes = $this->nbPlace - $reservees;
-
-    //     return $restantes;
-    // }
-
 
     /**
      * @return Collection<int, Programme>
@@ -209,6 +177,5 @@ class Session
         return $this->nomSession;
 
     }
-
 
 }

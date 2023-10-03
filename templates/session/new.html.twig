@@ -4,11 +4,11 @@
 
 {% block body %}
 
-    {# {% if edit %} #}
-        {# <h1>Editer une session</h1> #}
-    {# {% else %} #}
+    {% if edit %}
+        <h1>Editer une session</h1>
+    {% else %}
         <h1>Ajouter une session</h1>
-    {# {% endif %} #}
+    {% endif %}
 
     {{ form_start(form) }}
         {{ form_row(form.nomSession) }}
@@ -20,7 +20,6 @@
             <div class="col-sm">
                 {{ form_row(form.dateFin) }}
             </div>
-        </div>
         </div>
         {{ form_row(form.placesTheoriques) }}
 
@@ -36,7 +35,6 @@
                 {{ form_widget(programmeField, {'attr': {'class': 'borders'}}) }}
             </div>
                 {% endfor %}
-            </div>
             </div>
             <div class="form-group row flex-action">
             <button type="button"

@@ -24,21 +24,22 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         addDeleteLink($(newElem).find('div.borders'))
         newElem.appendTo(list)
     })
+
     // anonymize-collection-widget.js : fonction permettant de supprimer un bloc "programme" existant au sein d'une session
     $('.remove-collection-widget').find('div.borders').each(function() {
         addDeleteLink($(this))
     })
+
     // fonction permettant l'ajout d'un bouton "Supprimer ce module" dans un bloc "programme", et d'enregistrer l'évenement "click" associé
     function addDeleteLink($moduleForm) {
         var $removeFormButton = $('<div class="block"><button type="button" class="button">Supprimer ce module</button></div>');
         $moduleForm.append($removeFormButton)
 
- 
-
         $removeFormButton.on('click', function(e) {
             $moduleForm.remove()
         })
     }
+
     // remove-session.js : fonction permettant de demander la confirmation de suppression d'une session
     $('.remove-session-confirm').on('click', function(e) {
         e.preventDefault()
@@ -46,6 +47,7 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         let href=$(this).attr('href')
         showModalConfirm(id, href, "Confirmation de suppression d'une session")
     })
+
     // remove-stagiaire.js : fonction permettant de demander la confirmation de suppression d'un stagiaire
     $('.remove-stagiaire-confirm').on('click', function(e) {
         e.preventDefault()
@@ -53,6 +55,7 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         let href=$(this).attr('href')
         showModalConfirm(id, href, "Confirmation de suppression d'un stagiaire")
     })
+
     // anonymize-stagiaire.js : fonction permettant de demander la confirmation d'anonymisation d'un stagiaire
     $('.anonymize-stagiaire-confirm').on('click', function(e) {
         e.preventDefault()
@@ -60,6 +63,7 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         let href=$(this).attr('href')
         showModalConfirm(id, href, "Confirmation de l'anonymisation d'un stagiaire")
     })
+
     // Fonction permettant l'affichage de la fenêtre modale de confirmation pour chaque situation
     function showModalConfirm($id, $href, $title) {
         // console.log("id   = "+$id)
@@ -80,5 +84,4 @@ $(document).ready(function() { // Une fois que le document (base.html.twig) HTML
         })
         $('#modalPopup').modal('show')
     }
-
 })

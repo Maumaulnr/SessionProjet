@@ -75,7 +75,7 @@ class SessionController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) { // Vérifie que le formulaire a été soumis et qu'il est valide
             $session = $form->getData(); //Hydrate l'objet $session avec les données du formulaire
-            // dd($session);
+            // dd($form->getData());
             $entityManager->persist($session); // Prépare l'insertion en base de données
             $entityManager->flush(); // Exécute l'insertion en base de données
             return $this->redirectToRoute('app_session'); // Redirige vers la liste des sessions
