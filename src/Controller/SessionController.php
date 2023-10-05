@@ -29,7 +29,7 @@ class SessionController extends AbstractController
     
 
     #[Route('/{formation_id}/session/new', name: 'new_session')]
-    #[Route('/session/{id}/edit', name: 'edit_session')]
+    #[Route('/session/{id}/edit', name: 'edit_session')]    
     public function add(EntityManagerInterface $entityManager, Session $session = null, Request $request, $formation_id, FormationRepository $formationRepository): Response
     {
 

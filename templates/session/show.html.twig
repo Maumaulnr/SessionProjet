@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <h3>Liste des stagiaires :</h3>
+    <h3>Liste des stagiaires inscrit à une session :</h3>
 
-    <table class="table table-hover table-responsive">
+    {# <table class="table table-hover table-responsive">
         <thead class="table-light">
             <tr class="text-center">
                 <th>Stagiaire N°</th>
@@ -56,6 +56,51 @@
                 </tr>
             {% endfor %}
         </tbody>
+    </table> #}
+
+    {# Tableau des stagiaires inscrits #}
+    <h2>Stagiaires inscrits à la session</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stagiaire in stagiaires %}
+                <tr>
+                    <td>{{ stagiaire.nom }}</td>
+                    <td>{{ stagiaire.prenom }}</td>
+                    <td>Supprimer</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
+
+    {# Tableau des stagiaires non inscrits #}
+    <h2>Stagiaires non inscrits à la session</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stagiaire in stagiaireNotInSession %}
+                <tr>
+                    <td>{{ stagiaire.nom }}</td>
+                    <td>{{ stagiaire.prenom }}</td>
+                    <td>
+                        <a class="btn btn-danger" href="{{ path('add_session', {'id': session.id, 'idStagiaire': stagiaire.id}) }}">Ajouter</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 
 {% endblock %}
