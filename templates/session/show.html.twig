@@ -5,19 +5,7 @@
 {% block body %}
     <h1>Détail d'une session</h1>
 
-    <h2>{{ session }}</h2>
-
-    <h3>Liste des stagiaires :</h3>
-
-    <ul class="list-unstyled">
-        {% set counter = 1 %}
-        {% for stagiaire in stagiaires %}
-            <li>
-                {{ counter }}# <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom }} {{ stagiaire.prenom }}</a>
-            </li>
-            {% set counter = counter + 1 %}
-        {% endfor %}
-    </ul>
+    <h2>Nom de la session : {{ session }}</h2>
 
     <h3>Liste des cours :</h3>
 
@@ -33,6 +21,38 @@
                 <tr class="text-center">
                     <td>{{ programme.cours }}</td>
                     <td>{{ programme.nbJours }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Liste des stagiaires :</h3>
+
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr class="text-center">
+                <th>Stagiaire N°</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set counter = 1 %}
+            {% for stagiaire in stagiaires %}
+                <tr class="text-center">
+                    <td>{{ counter }}</td>
+                    <td>
+                        <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire.nom }}</a>
+                    </td>
+                    <td>{{ stagiaire.prenom }}</td>
+                    <td>
+                        <a class="btn btn-warning" href="{{ path('edit_session', {'id': session.id}) }}">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="{{ path('delete_session', {'id': session.id}) }}">Supprimer</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
