@@ -10,11 +10,12 @@
     <p>Sessions de la formation</p> 
     {% for session in formation.sessions %}
     <p>
-        <a href="{{ path('show_session', {'id': session.id}) }}">{{ session.formation }}</a> {{ session.dateDebut | date("d/m/Y") }} au {{ session.dateFin | date("d/m/Y") }}
+        <a href="{{ path('show_session', {'id': session.id}) }}">{{ session.formation }}</a> 
+        {{ session.dateDebut | date("d/m/Y") }} au {{ session.dateFin | date("d/m/Y") }}
     </p>
+    {% endfor %}
     <p>
         <a href="{{ path('new_session', {'formation_id': formation.id}) }}">Ajouter une session</a>
     </p>
-    {% endfor %}
 
 {% endblock %}

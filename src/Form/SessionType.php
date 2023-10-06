@@ -64,30 +64,6 @@ class SessionType extends AbstractType
                 'by_reference' => false, // il est obligatoire car Session n'a pas de setProgramme mais c'est Programme qui contient setSession
                 // c'est Programme qui est propiétaire de la relation (éviter un mapping false on rajoute by_reference => false)
             ])
-            
-            // ->add('stagiaires', CollectionType::class, [
-            //     // la collection attend l'élément qu'elle entrera dans le form
-            //     // ce n'est pas obligatoire que ce soit un autre form
-            //     'entry_type' => StagiaireType::class,
-            //     'prototype' => true,
-            //     // on va autoriser l'ajout d'un nouvel élément dans l'entité Session qui seront persisté grâce au cascade_persist sur l'élément Stagiaire
-            //     // ça va activer un data prototype qui sera un attribut HTML qu'on pourra manipuler en JS
-            //     // allow_add permet d'ajouter plusieurs stagiaires et allow_delete de supprimer des éléments
-            //     'allow_add' => true,
-            //     'allow_delete' => true,
-            //     'by_reference' => false, // il est obligatoire car Session n'a pas de setStagiaire mais c'est Stagiaire qui contient setSession
-            //     // c'est Stagiaire qui est propiétaire de la relation (éviter un mapping false on rajoute by_reference => false)
-            // ])
-
-            // ->add('stagiaires', EntityType::class, [
-            //     'class' => Stagiaire::class,
-            //     'attr' => [
-            //         'class' => 'form-control'
-            //     ],
-            //     'multiple' => true, // Permet la sélection de plusieurs stagiaires
-            //     'expanded' => true, // Utilisez des cases à cocher
-            //     'choice_label' => 'nom', // Le champ à afficher dans les options
-            // ])
             ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'

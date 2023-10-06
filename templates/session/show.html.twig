@@ -60,9 +60,9 @@
 
     {# Tableau des stagiaires inscrits #}
     <h2>Stagiaires inscrits à la session</h2>
-    <table>
-        <thead>
-            <tr>
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr class="text-center">
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Action</th>
@@ -70,10 +70,12 @@
         </thead>
         <tbody>
             {% for stagiaire in stagiaires %}
-                <tr>
+                <tr class="text-center">
                     <td>{{ stagiaire.nom }}</td>
                     <td>{{ stagiaire.prenom }}</td>
-                    <td>Supprimer</td>
+                    <td>
+                        <a class="btn btn-danger" href="{{ path('remove_session', {'id': session.id, 'stagiaire_id': stagiaire.id}) }}">Retirer</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -81,9 +83,9 @@
 
     {# Tableau des stagiaires non inscrits #}
     <h2>Stagiaires non inscrits à la session</h2>
-    <table>
-        <thead>
-            <tr>
+    <table class="table table-hover table-responsive">
+        <thead class="table-light">
+            <tr class="text-center">
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Action</th>
@@ -91,11 +93,11 @@
         </thead>
         <tbody>
             {% for stagiaire in stagiaireNotInSession %}
-                <tr>
+                <tr class="text-center">
                     <td>{{ stagiaire.nom }}</td>
                     <td>{{ stagiaire.prenom }}</td>
                     <td>
-                        <a class="btn btn-danger" href="{{ path('add_session', {'id': session.id, 'idStagiaire': stagiaire.id}) }}">Ajouter</a>
+                        <a class="btn btn-danger" href="{{ path('add_session', {'id': session.id, 'stagiaire_id': stagiaire.id}) }}">Ajouter</a>
                     </td>
                 </tr>
             {% endfor %}
