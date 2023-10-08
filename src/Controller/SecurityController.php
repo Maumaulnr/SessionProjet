@@ -45,6 +45,7 @@ class SecurityController extends AbstractController
         
         // Cette méthode peut être vide - elle sera interceptée par la clé de déconnexion de votre pare-feu.
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        
 
     }
     
