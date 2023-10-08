@@ -16,47 +16,66 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
 
+    # Indique que cette fonction est associée à la route '/session' et qu'elle est nommée 'app_session'.
+    # Lorsque cette route est appelée, cette fonction sera exécutée.
     #[Route('/session', name: 'app_session')]
     public function index(SessionRepository $sessionRepository): Response
     {
 
+        # Récupération de toutes les sessions ordonnées par nom
         $sessions = $sessionRepository->findBy([], ['nomSession' => 'ASC']);
 
+        # Renvoie une réponse HTTP à l'utilisateur.
+        # En utilisant "render", on génère la vue Twig associée au template 'session/index.html.twig'.
+        # On passe également les données des sessions à la vue pour qu'elle puisse les afficher.
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
         ]);
+
     }
 
     
-
+    # Indique que cette fonction est associée à deux routes : '/{formation_id}/session/new' et '/session/{id}/edit'.
+    # Elle est nommée 'new_session' pour la première route et 'edit_session' pour la deuxième route.
+    # Lorsque l'une de ces routes est appelée, cette fonction sera exécutée.
     #[Route('/{formation_id}/session/new', name: 'new_session')]
     #[Route('/session/{id}/edit', name: 'edit_session')]    
     public function add(EntityManagerInterface $entityManager, Session $session = null, Request $request, $formation_id, FormationRepository $formationRepository): Response
     {
 
         if (!$session) {
+            # Cette condition vérifie si "$session" est nulle. Si c'est le cas, elle crée une nouvelle instance de "Session".
             $session = new Session();
         }
 
-        $form = $this->createForm(SessionType::class, $session); // Crée le formulaire
+        # Crée un formulaire en utilisant le type de formulaire "SessionType" et l'objet "$session".
+        $form = $this->createForm(SessionType::class, $session);
 
-        $form->handleRequest($request); // Récupère les données du formulaire
+        # Gère la requête HTTP entrante, ce qui signifie qu'elle traite les données soumises dans le formulaire.
+        $form->handleRequest($request);
 
+        # Utilise le service "formationRepository" pour trouver une formation en fonction de son identifiant "$formation_id".
         $formation = $formationRepository->find($formation_id);
               
-        if ($form->isSubmitted() && $form->isValid()) { // Vérifie que le formulaire a été soumis et qu'il est valide
+        # Cette condition vérifie si le formulaire a été soumis et si ses données sont valides.
+        if ($form->isSubmitted() && $form->isValid()) { 
 
-            $session = $form->getData(); //Hydrate l'objet $session avec les données du formulaire
+            // on récupère les données du formulaire
+            $session = $form->getData(); 
 
-            $entityManager->persist($session); // Prépare l'insertion en base de données
+            // prepare PDO
+            $entityManager->persist($session); 
 
-            $entityManager->flush(); // Exécute l'insertion en base de données
+            // execute PDO
+            $entityManager->flush(); 
 
-            return $this->redirectToRoute('app_session'); // Redirige vers la liste des sessions
+            # On redirige l'utilisateur vers la route 'app_session'.
+            return $this->redirectToRoute('app_session');
 
         }
 
-        // vue pour afficher le formulaire d'ajout
+        # Rend un modèle Twig appelé 'session/new.html.twig'.
+        # Elle passe également le formulaire et l'ID de la session en cours d'édition à la vue.
         return $this->render('session/new.html.twig', [
             'form' => $form->createView(), // Envoie le formulaire à la vue
             'edit' => $session->getId(),

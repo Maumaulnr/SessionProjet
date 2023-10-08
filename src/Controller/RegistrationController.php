@@ -22,11 +22,13 @@ class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
 
+    # Constructeur de la classe pour injecter le service EmailVerifier
     public function __construct(EmailVerifier $emailVerifier)
     {
         $this->emailVerifier = $emailVerifier;
     }
 
+    # Action pour gérer l'inscription d'un utilisateur
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
@@ -35,11 +37,11 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Vérification du champ honeypot
+            # Vérification du champ honeypot
             $honeypot = $form->get('honeypot')->getData();
             if (empty($honeypot)) {
                 
-                // encode the plain password
+                # Encodage du mot de passe en utilisant UserPasswordHasherInterface
                 $user->setPassword(
                     $userPasswordHasher->hashPassword(
                         $user,
@@ -50,7 +52,7 @@ class RegistrationController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
     
-                // generate a signed url and email it to the user
+                # Génération d'une URL signée et envoi d'un email de confirmation
                 $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                     (new TemplatedEmail())
                         ->from(new Address('admin@exemple.com', 'Admin Site'))
@@ -58,7 +60,7 @@ class RegistrationController extends AbstractController
                         ->subject('S\'il vous plaît confirmer votre email')
                         ->htmlTemplate('registration/confirmation_email.html.twig')
                 );
-                // do anything else you need here, like send an email
+                # Authentification de l'utilisateur après son inscription
     
                 return $userAuthenticator->authenticateUser(
                     $user,
@@ -67,26 +69,27 @@ class RegistrationController extends AbstractController
                 );
 
             } else {
-
+                # Redirection en cas de tentative de bot
                 return $this->redirectToRoute('app_register');
 
             }
 
         }
 
+        # Affichage du formulaire d'inscription
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
 
     }
 
-
+    # Action pour vérifier l'email de l'utilisateur
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
+        # Validation du lien de confirmation d'email, définit User::isVerified=true et persiste
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
@@ -95,7 +98,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
+        # @TODO Modifiez la redirection en cas de succès et gérez ou supprimez le message flash dans vos modèles.
         $this->addFlash('success', 'Votre email a bien été vérifié.');
 
         return $this->redirectToRoute('app_register');
