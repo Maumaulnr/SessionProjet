@@ -17,8 +17,10 @@ class ProgrammeController extends AbstractController
     public function index(ProgrammeRepository $programmeRepository): Response
     {
 
+        // Récupération de tous les programmes depuis le ProgrammeRepository
         $programmes = $programmeRepository->findBy([]);
 
+        // Rendu d'un modèle Twig avec les programmes récupérés pour affichage
         return $this->render('programme/index.html.twig', [
             'programmes' => $programmes,
         ]);

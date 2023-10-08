@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Session{% endblock %}
 
 {% block body %}
 
-    {# app.formateur pour récupérer les infos de la personne connectée #}
-    <h1>Bienvenue {{ app.user.nom }} </h1>
+    {# Vérifiez si l'utilisateur est connecté #}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h1>Bienvenue {{ app.user.nom }}</h1>
+    {% else %}
+        <p>Connectez-vous pour accéder à votre contenu.</p>
+        {# Ajoutez ici un lien vers la page de connexion s'il est nécessaire #}
+    {% endif %}
 
 {% endblock %}

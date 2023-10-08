@@ -12,41 +12,42 @@
 
     </head>
     <body class="d-flex flex-column">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container px-4 px-lg-3 gap-4">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+        <nav class="container navbar navbar-expand-lg navbar-light">
+            <div class="container px-4 px-lg-3">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0 gap-3">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ path('app_home') }}">Accueil</a>
+                        <a class="nav-link fs-5 styled-link" href="{{ path('app_home') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ path('app_categorie') }}">Catégories</a>
+                        <a class="nav-link fs-5 styled-link" href="{{ path('app_categorie') }}">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ path('app_formation') }}">Formations</a>
+                        <a class="nav-link fs-5 styled-link" href="{{ path('app_formation') }}">Formations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ path('app_cours') }}">Cours</a>
+                        <a class="nav-link fs-5 styled-link" href="{{ path('app_cours') }}">Cours</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ path('app_stagiaire') }}">Stagiaires</a>
+                        <a class="nav-link fs-5 styled-link" href="{{ path('app_stagiaire') }}">Stagiaires</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ path('app_session') }}">Sessions</a>
+                        <a class="nav-link fs-5 styled-link" href="{{ path('app_session') }}">Sessions</a>
                     </li>
                 </ul>
+            </div>
+            <div class="d-flex flex-row justify-content-end px-4 w-50 gap-3">
+                {# si la personne est connectée on affiche "se déconnecter" sinon on affiche "se connecter" #}
+                {% if app.user %}
+                    <a href="{{ path('app_logout') }}" class="fs-5 styled-link">Se déconnecter</a>
+                    <a href="">Mon profil</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="fs-5 styled-link">Se connecter</a>
+                    <a href="{{ path('app_register') }}" class="fs-5 styled-link">S'enregistrer</a>
+                {% endif %}
             </div>
         </nav>
         <main class="container d-flex flex-column align-items-center">
             {# <div class="container px-4 px-lg-5 d-flex flex-column gap-3"> #}
-
-                {# si la personne est connectée on affiche "se déconnecter" sinon on affiche "se connecter" #}
-                {% if app.user %}
-                    <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                    <a href="">Mon profil</a>
-                {% else %}
-                    <a href="{{ path('app_login') }}">Se connecter</a>
-                    <a href="{{ path('app_register') }}">S'enregistrer</a>
-                {% endif %}
 
                 {% block body %}{% endblock %}
 
@@ -54,9 +55,8 @@
         </main>
         <footer class="bg-light text-center text-lg-start">
             <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-              © 2020 Copyright:
-              <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            <div class="d-flex justify-content-center align-items-center text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              <p class="text-dark">© 2023 Copyright : Session</p>
             </div>
             <!-- Copyright -->
           </footer>

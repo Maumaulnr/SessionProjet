@@ -5,11 +5,35 @@
 }
 
 main {
-    min-height: 100vh; /* 100% de la hauteur de la fenêtre visible */
+    min-height: 100vh !important; /* 100% de la hauteur de la fenêtre visible */
+    padding: 20px 0;
+}
+
+/**  NAVBAR **/
+
+/* Style de base des liens */
+.styled-link {
+    background-color: #f2f2f2; /* Couleur de fond claire */
+    color: #333; /* Couleur de base du texte */
+    text-decoration: none; /* Supprime le soulignement par défaut */
+    padding: 10px 20px; /* Ajoutez du rembourrage pour améliorer l'apparence */
+    border-radius: 5px; /* Ajoutez des coins arrondis pour le lien */
+    transition: background-color 0.3s, color 0.3s; /* Animation de changement de couleur de fond et de texte en 0.3 seconde */
+}
+
+/* Changement de couleur de fond et de texte au survol */
+.styled-link:hover {
+    background-color: #ff0000; /* Couleur de fond au survol (plus foncée) */
+    color: #ffffff; /* Couleur du texte au survol (clair pour rester lisible) */
 }
 
 
+
 /**  REGISTER **/
+
+.bg-image {
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
+}
 
 .gradient-custom-3 {
     /* fallback for old browsers */
