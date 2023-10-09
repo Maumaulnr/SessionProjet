@@ -16,7 +16,7 @@ class CategorieController extends AbstractController
 
     # Indique que cette fonction est associée à la route '/categorie' et qu'elle est nommée 'app_categorie'.
     # Lorsque cette route est appelée, cette fonction sera exécutée.
-    #[Route('/categorie', name: 'app_categorie')]
+    #[Route('/admin/categorie', name: 'app_categorie')]
     # Ceci est la signature de la fonction "index". Elle prend un paramètre "$categorieRepository" de type "CategorieRepository".
     # Le paramètre "$categorieRepository" est injecté automatiquement par Symfony grâce à l'injection de dépendances.
     public function index(CategorieRepository $categorieRepository): Response
@@ -39,8 +39,8 @@ class CategorieController extends AbstractController
     # Indique que cette fonction est associée à deux routes : '/categorie/new' et '/categorie/{id}/edit'.
     # Elle est nommée 'new_categorie' pour la première route et 'edit_categorie' pour la deuxième route.
     # Lorsque l'une de ces routes est appelée, cette fonction sera exécutée.
-    #[Route('/categorie/new', name: 'new_categorie')]
-    #[Route('/categorie/{id}/edit', name: 'edit_categorie')]
+    #[Route('/admin/categorie/new', name: 'new_categorie')]
+    #[Route('/admin/categorie/{id}/edit', name: 'edit_categorie')]
     # Ceci est la signature de la fonction "new_edit". Elle prend un paramètre "$categorie" de type "Categorie" avec une valeur par défaut nulle.
     # Elle prend également un paramètre "$request" de type "Request" pour représenter la requête HTTP entrante.
     # Et enfin, elle prend un paramètre "$entityManager" de type "EntityManagerInterface" pour la gestion des entités.
@@ -84,7 +84,7 @@ class CategorieController extends AbstractController
 
     # Indique que cette fonction est associée à la route '/categorie/{id}/delete' et qu'elle est nommée 'delete_categorie'.
     # Lorsque cette route est appelée, cette fonction sera exécutée.
-    #[Route('/categorie/{id}/delete', name: 'delete_categorie')]
+    #[Route('/admin/categorie/{id}/delete', name: 'delete_categorie')]
     # Ceci est la signature de la fonction "delete". Elle prend un paramètre "$categorie" de type "Categorie".
     # Le paramètre "$categorie" est injecté automatiquement par Symfony en fonction de la valeur de "{id}" dans l'URL.
     # Elle prend également un paramètre "$entityManager" de type "EntityManagerInterface" pour la gestion des entités.
@@ -105,7 +105,7 @@ class CategorieController extends AbstractController
 
     # Indique que cette fonction est associée à la route '/categorie/{id}' et qu'elle est nommée 'show_categorie'.
     # Lorsque cette route est appelée, cette fonction sera exécutée.
-    #[Route('/categorie/{id}', name: 'show_categorie')]
+    #[Route('/admin/categorie/{id}', name: 'show_categorie')]
     # Ceci est la signature de la fonction "show". Elle prend un paramètre "$categorie" de type "Categorie".
     # Le paramètre "$categorie" est injecté automatiquement par Symfony en fonction de la valeur de "{id}" dans l'URL.
     public function show(Categorie $categorie): Response 

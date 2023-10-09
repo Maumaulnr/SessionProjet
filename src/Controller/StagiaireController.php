@@ -17,7 +17,7 @@ class StagiaireController extends AbstractController
 
     # Définit une route avec le nom 'app_stagiaire' pour la méthode 'index'.
     # Lorsque l'URL '/stagiaire' est accédée, cette méthode sera exécutée.
-    #[Route('/stagiaire', name: 'app_stagiaire')]
+    #[Route('/admin/stagiaire', name: 'app_stagiaire')]
     public function index(StagiaireRepository $stagiaireRepository): Response
     {
 
@@ -34,7 +34,7 @@ class StagiaireController extends AbstractController
 
     # Définit deux routes, 'new_stagiaire' et 'edit_stagiaire', pour la méthode 'new_edit'.
     # Ces routes permettent d'ajouter un nouveau stagiaire ou de modifier un stagiaire existant.
-    #[Route('/stagiaire/new', name: 'new_stagiaire')]
+    #[Route('/admin/stagiaire/new', name: 'new_stagiaire')]
     #[Route('/stagiaire/{id}/edit', name: 'edit_stagiaire')]
     public function new_edit(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -76,7 +76,7 @@ class StagiaireController extends AbstractController
 
     # Définit une route 'delete_stagiaire' pour la méthode 'delete'.
     # Cette route permet de supprimer un stagiaire par son ID.
-    #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
+    #[Route('/admin/stagiaire/{id}/delete', name: 'delete_stagiaire')]
     public function delete(Stagiaire $stagiaire, EntityManagerInterface $entityManager)
     {
         
@@ -94,7 +94,7 @@ class StagiaireController extends AbstractController
 
     # Cette ligne définit une route 'show_stagiaire' pour la méthode 'show'.
     # Cette route permet d'afficher les détails d'un stagiaire par son ID.
-    #[Route('/stagiaire/{id}', name: 'show_stagiaire')]
+    #[Route('/admin/stagiaire/{id}', name: 'show_stagiaire')]
     public function show(Stagiaire $stagiaire): Response 
     {
 

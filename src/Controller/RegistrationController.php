@@ -29,7 +29,7 @@ class RegistrationController extends AbstractController
     }
 
     # Action pour gérer l'inscription d'un utilisateur
-    #[Route('/register', name: 'app_register')]
+    #[Route('/admin/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new Formateur();
@@ -48,6 +48,8 @@ class RegistrationController extends AbstractController
                         $form->get('plainPassword')->getData()
                     )
                 );
+
+                $user->setRoles(["ROLE_ADMIN"]);
     
                 $entityManager->persist($user);
                 $entityManager->flush();

@@ -58,6 +58,7 @@
         </tbody>
     </table> #}
 
+    {% if session.stagiaires | length > 0 %}
     {# Tableau des stagiaires inscrits #}
     <h2>Stagiaires inscrits à la session</h2>
     <table class="table table-hover table-responsive">
@@ -80,6 +81,9 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <p>Aucun stagiaire dans cette session</p>
+    {% endif %}
 
     {# Tableau des stagiaires non inscrits #}
     <h2>Stagiaires non inscrits à la session</h2>
@@ -88,7 +92,9 @@
             <tr class="text-center">
                 <th>Nom</th>
                 <th>Prénom</th>
+                {# {% if app.user == "ROLE_ADMIN" %} #}
                 <th>Action</th>
+                {# {% endif %} #}
             </tr>
         </thead>
         <tbody>
@@ -96,13 +102,16 @@
                 <tr class="text-center">
                     <td>{{ stagiaire.nom }}</td>
                     <td>{{ stagiaire.prenom }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+ 
                     <td>
                         <a class="btn btn-danger" href="{{ path('add_session', {'id': session.id, 'stagiaire_id': stagiaire.id}) }}">Ajouter</a>
                     </td>
+                    {% endif %}
+             
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
 
 {% endblock %}

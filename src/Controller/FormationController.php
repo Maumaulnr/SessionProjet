@@ -36,8 +36,8 @@ class FormationController extends AbstractController
 
     # Cette méthode gère à la fois la création et la modification d'une formation.
     # Elle est associée à deux routes différentes : 'new_formation' pour la création et 'edit_formation' pour la modification.
-    #[Route('/formation/new', name: 'new_formation')]
-    #[Route('/formation/{id}/edit', name: 'edit_formation')]
+    #[Route('/admin/formation/new', name: 'new_formation')]
+    #[Route('/admin/formation/{id}/edit', name: 'edit_formation')]
     public function new_edit(Formation $formation = null, Request $request, EntityManagerInterface $entityManager): Response
     {
 
@@ -77,7 +77,7 @@ class FormationController extends AbstractController
     }
     
     # Cette méthode est associée à la route '/formation/{id}/delete' et est nommée 'delete_formation'.
-    #[Route('/formation/{id}/delete', name: 'delete_formation')]
+    #[Route('/admin/formation/{id}/delete', name: 'delete_formation')]
     public function delete(Formation $formation, EntityManagerInterface $entityManager)
     {
         

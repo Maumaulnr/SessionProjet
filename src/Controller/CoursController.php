@@ -36,8 +36,8 @@ class CoursController extends AbstractController
 
     # Cette méthode gère à la fois la création et la modification d'un cours.
     # Elle est associée à deux routes différentes : 'new_cours' pour la création et 'edit_cours' pour la modification.
-    #[Route('/cours/new', name: 'new_cours')]
-    #[Route('/cours/{id}/edit', name: 'edit_cours')]
+    #[Route('/admin/cours/new', name: 'new_cours')]
+    #[Route('/admin/cours/{id}/edit', name: 'edit_cours')]
     public function new_edit(Cours $cours = null, Request $request, EntityManagerInterface $entityManager): Response
     {
 
@@ -78,7 +78,7 @@ class CoursController extends AbstractController
     }
     
     # Cette méthode est associée à la route '/cours/{id}/delete' et est nommée 'delete_cours'.
-    #[Route('/cours/{id}/delete', name: 'delete_cours')]
+    #[Route('/admin/cours/{id}/delete', name: 'delete_cours')]
     public function delete(Cours $cours, EntityManagerInterface $entityManager)
     {
 

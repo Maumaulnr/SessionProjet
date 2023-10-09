@@ -38,8 +38,10 @@ class SessionController extends AbstractController
     # Indique que cette fonction est associée à deux routes : '/{formation_id}/session/new' et '/session/{id}/edit'.
     # Elle est nommée 'new_session' pour la première route et 'edit_session' pour la deuxième route.
     # Lorsque l'une de ces routes est appelée, cette fonction sera exécutée.
-    #[Route('/{formation_id}/session/new', name: 'new_session')]
-    #[Route('/session/{id}/edit', name: 'edit_session')]    
+    # Créer une session à partir de l'id d'une formation
+    # Modifier une session
+    #[Route('/admin/{formation_id}/session/new', name: 'new_session')]
+    #[Route('/admin/session/{id}/edit', name: 'edit_session')]    
     public function add(EntityManagerInterface $entityManager, Session $session = null, Request $request, $formation_id, FormationRepository $formationRepository): Response
     {
 
@@ -86,7 +88,7 @@ class SessionController extends AbstractController
 
 
 
-    #[Route('/session/{id}/delete', name: 'delete_session')]
+    #[Route('/admin/session/{id}/delete', name: 'delete_session')]
     public function delete(Session $session, EntityManagerInterface $entityManager)
     {
         
@@ -99,7 +101,7 @@ class SessionController extends AbstractController
 
     }
 
-    #[Route('/{stagiaire_id}/session/{id}', name: 'add_session')]
+    #[Route('/admin/{stagiaire_id}/session/{id}', name: 'add_session')]
     public function addStagiaireToSession(StagiaireRepository $stagiaireRepository, EntityManagerInterface $entityManager, Session $session, $stagiaire_id)
     {
 
@@ -123,7 +125,7 @@ class SessionController extends AbstractController
     }
 
 
-    #[Route('/remove/{stagiaire_id}/session/{id}', name: 'remove_session')]
+    #[Route('/admin/remove/{stagiaire_id}/session/{id}', name: 'remove_session')]
     public function removeStagiaireToSession(StagiaireRepository $stagiaireRepository, EntityManagerInterface $entityManager, Session $session, Request $request, $stagiaire_id)
     {
 
