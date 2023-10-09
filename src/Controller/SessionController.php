@@ -112,7 +112,7 @@ class SessionController extends AbstractController
 
             // Enregistrez les modifications dans la base de données
             $entityManager->persist($session); // Prépare l'insertion en base de données
-            // dd($session);
+            
             $entityManager->flush(); // Exécute l'insertion en base de données
 
             // Redirigez l'utilisateur vers la page actuelle (ou une autre page si nécessaire)
@@ -131,12 +131,12 @@ class SessionController extends AbstractController
 
         if ($stagiaire) {
 
-            // Ajoutez le stagiaire à la session
+            // Retirer le stagiaire de la session
             $session->removeStagiaire($stagiaire);
             
             // Enregistrez les modifications dans la base de données
             $entityManager->persist($session); // Prépare l'insertion en base de données
-            // dd($session->getId());
+            
             $entityManager->flush(); // Exécute l'insertion en base de données
             // Redirigez l'utilisateur vers la page actuelle (ou une autre page si nécessaire)
             return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
